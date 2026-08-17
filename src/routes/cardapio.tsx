@@ -277,15 +277,15 @@ const css = `
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    min-height: 38px;
-    padding: 0 13px;
+    gap: 9px;
+    min-height: 42px;
+    padding: 0 15px;
     border-radius: 12px;
     color: #071b0d;
     background: #25d366;
     box-shadow: 0 8px 20px rgba(37,211,102,.16);
     text-decoration: none;
-    font-size: .82rem;
+    font-size: .9rem;
     font-weight: 950;
     white-space: nowrap;
   }
