@@ -99,15 +99,16 @@ const css = `
   .links { display: grid; gap: 13px; }
   .link {
     position: relative; display: grid; grid-template-columns: 46px 1fr 24px; align-items: center;
-    min-height: 70px; padding: 11px 15px 11px 12px; border: 1px solid rgba(255,255,255,.18);
-    border-radius: 20px; color: var(--white); text-decoration: none; background: rgba(255,255,255,.072);
+    min-height: 70px; padding: 11px 15px 11px 12px; border: 1px solid rgba(255,255,255,.45);
+    border-radius: 20px; color: #1f0226; text-decoration: none; background: rgba(255,255,255,.92);
     box-shadow: 0 10px 28px rgba(0,0,0,.18);
     transition: transform .18s ease, border-color .18s ease, background .18s ease;
     -webkit-tap-highlight-color: transparent;
   }
-  .link:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.12); }
+  .link:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.7); background: #ffffff; }
   .link:active { transform: scale(.988); }
-  .link.primary { border-color: rgba(37,211,102,.42); background: linear-gradient(135deg, rgba(37,211,102,.20), rgba(255,255,255,.075)); }
+  .link.primary { border-color: rgba(37,211,102,.55); background: linear-gradient(135deg, rgba(37,211,102,.12), rgba(255,255,255,.92)); }
+  .link.primary:hover { background: linear-gradient(135deg, rgba(37,211,102,.18), #ffffff); }
   .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 15px; background: rgba(255,255,255,.11); }
   .primary .icon { background: #25d366; box-shadow: 0 8px 25px rgba(37,211,102,.24); }
   .instagram .icon { background: linear-gradient(145deg, #7b2fff, #e33186 54%, #ffae31); }
@@ -116,7 +117,7 @@ const css = `
   .icon svg { width: 25px; height: 25px; display: block; }
   .link-copy { min-width: 0; padding: 0 9px; }
   .link-title { display: block; font-weight: 800; font-size: 1.02rem; }
-  .link-description { display: block; margin-top: 3px; color: var(--muted); font-size: .86rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .link-description { display: block; margin-top: 3px; color: #6b4a6e; font-size: .86rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .arrow { width: 21px; height: 21px; opacity: .72; }
   .footer { padding-top: 22px; color: rgba(255,255,255,.62); text-align: center; font-size: .78rem; }
   @media (max-width: 390px) {
