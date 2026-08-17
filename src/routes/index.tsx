@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { ShoppingBag, UtensilsCrossed } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
 
 const whatsappUrl =
