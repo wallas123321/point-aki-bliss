@@ -89,6 +89,11 @@ const css = `
     color: #f8ecf9; text-align: left; line-height: 1.42;
   }
   .address svg { flex: 0 0 auto; width: 24px; height: 24px; margin-top: 1px; color: var(--pink); }
+  .footer-address {
+    display: flex; justify-content: center; align-items: center; gap: 6px;
+    margin-top: 10px; color: rgba(255,255,255,.72); font-size: .72rem; line-height: 1.3;
+  }
+  .footer-address svg { width: 14px; height: 14px; color: var(--pink); }
   .links { display: grid; gap: 13px; }
   .link {
     position: relative; display: grid; grid-template-columns: 46px 1fr 24px; align-items: center;
@@ -196,14 +201,6 @@ function Index() {
             </p>
           </header>
 
-          <div className="address">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <span>{address}</span>
-          </div>
-
           <nav className="links">
             <a className="link primary" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
               <span className="icon">
@@ -281,7 +278,16 @@ function Index() {
             </button>
           </div>
 
-          <footer className="footer">Point Aki do Açaí • Maringá, Paraná</footer>
+          <footer className="footer">
+            Point Aki do Açaí • Maringá, Paraná
+            <div className="footer-address">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span>{address}</span>
+            </div>
+          </footer>
         </div>
       </div>
 
