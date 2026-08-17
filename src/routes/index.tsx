@@ -183,7 +183,7 @@ function Index() {
 
             <a className="link menu" href="/cardapio?tab=casa" aria-label="Cardápio para levar para casa">
               <span className="icon">
-                <ShoppingBag size={25} color="#fff" />
+                <Package size={25} color="#fff" />
               </span>
               <span className="link-copy">
                 <span className="link-title">Cardápio - Levar para casa</span>
