@@ -104,6 +104,7 @@ const css = `
   .primary .icon { background: #25d366; box-shadow: 0 8px 25px rgba(37,211,102,.24); }
   .instagram .icon { background: linear-gradient(145deg, #7b2fff, #e33186 54%, #ffae31); }
   .maps .icon { background: linear-gradient(145deg, var(--purple-600), var(--magenta)); }
+  .menu .icon { background: linear-gradient(145deg, #ff6a00, #ee0979); }
   .icon svg { width: 25px; height: 25px; display: block; }
   .link-copy { min-width: 0; padding: 0 9px; }
   .link-title { display: block; font-weight: 800; font-size: 1.02rem; }
@@ -245,6 +246,20 @@ function Index() {
               </span>
               <Arrow />
             </a>
+
+            <a className="link menu" href="#" onClick={(e) => e.preventDefault()} aria-label="Cardápio">
+              <span className="icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+              </span>
+              <span className="link-copy">
+                <span className="link-title">Cardápio</span>
+                <span className="link-description"></span>
+              </span>
+              <Arrow />
+            </a>
+
           </nav>
 
           <div className="mini-actions">
