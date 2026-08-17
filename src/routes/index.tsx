@@ -175,7 +175,7 @@ function Index() {
                 <UtensilsCrossed size={25} color="#fff" />
               </span>
               <span className="link-copy">
-                <span className="link-title">Consumo no local</span>
+                <span className="link-title">Cardápio - Consumo no local</span>
                 <span className="link-description">Ver cardápio para comer aqui</span>
               </span>
               <Arrow />
@@ -186,7 +186,7 @@ function Index() {
                 <ShoppingBag size={25} color="#fff" />
               </span>
               <span className="link-copy">
-                <span className="link-title">Levar para casa</span>
+                <span className="link-title">Cardápio - Levar para casa</span>
                 <span className="link-description">Ver cardápio para viagem</span>
               </span>
               <Arrow />
