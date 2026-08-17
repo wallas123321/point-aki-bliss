@@ -235,15 +235,6 @@ function Index() {
 
           </nav>
 
-          <div className="mini-actions">
-            <button className="mini-button" type="button" onClick={copyAddress}>
-              Copiar endereço
-            </button>
-            <button className="mini-button" type="button" onClick={sharePage}>
-              Compartilhar página
-            </button>
-          </div>
-
           <footer className="footer">
             Point Aki do Açaí • Maringá, Paraná
             <div className="footer-address">
