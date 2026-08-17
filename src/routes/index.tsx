@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { ShoppingBag, UtensilsCrossed } from "lucide-react";
+import { NotebookText, Package } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
 import locationPinAsset from "@/assets/location-pin.png.asset.json";
 
@@ -172,7 +172,7 @@ function Index() {
 
             <a className="link menu" href="/cardapio?tab=local" aria-label="Cardápio para consumo no local">
               <span className="icon">
-                <UtensilsCrossed size={25} color="#fff" />
+                <NotebookText size={25} color="#fff" />
               </span>
               <span className="link-copy">
                 <span className="link-title">Cardápio - Consumo no local</span>
@@ -183,7 +183,7 @@ function Index() {
 
             <a className="link menu" href="/cardapio?tab=casa" aria-label="Cardápio para levar para casa">
               <span className="icon">
-                <ShoppingBag size={25} color="#fff" />
+                <Package size={25} color="#fff" />
               </span>
               <span className="link-copy">
                 <span className="link-title">Cardápio - Levar para casa</span>
