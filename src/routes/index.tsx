@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { ShoppingBag, UtensilsCrossed } from "lucide-react";
+import { NotebookText, Package } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
 import locationPinAsset from "@/assets/location-pin.png.asset.json";
 
