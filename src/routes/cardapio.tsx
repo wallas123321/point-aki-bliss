@@ -277,15 +277,15 @@ const css = `
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    min-height: 38px;
-    padding: 0 13px;
+    gap: 9px;
+    min-height: 42px;
+    padding: 0 15px;
     border-radius: 12px;
     color: #071b0d;
     background: #25d366;
     box-shadow: 0 8px 20px rgba(37,211,102,.16);
     text-decoration: none;
-    font-size: .82rem;
+    font-size: .9rem;
     font-weight: 950;
     white-space: nowrap;
   }
@@ -376,7 +376,7 @@ const css = `
     .item-copy { grid-column: 1 / 2; }
     .item-dots { display: none; }
     .item-price { grid-column: 2; grid-row: 1; min-width: 83px; padding: 6px 9px; font-size: .84rem; }
-    .order-button { grid-column: 1 / -1; width: 100%; min-height: 36px; }
+    .order-button { grid-column: 1 / -1; width: 100%; min-height: 40px; }
     .unavailable-badge { right: 5px; top: 49px; translate: 0 0; font-size: .62rem; }
     .footer-address { align-items: flex-start; text-align: left; }
   }
@@ -484,8 +484,8 @@ function CardapioPage() {
                         <img
                           src={whatsappLogo.url}
                           alt=""
-                          width={22}
-                          height={22}
+                          width={28}
+                          height={28}
                           style={{ display: "block" }}
                         />
                         Pedir
