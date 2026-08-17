@@ -184,7 +184,7 @@ function Index() {
 
             <a className="link menu" href="/cardapio?tab=casa" aria-label="Cardápio para levar para casa">
               <span className="icon">
-                <Package size={25} color="#fff" />
+                <img src={kitLevarCasaAsset.url} alt="" style={{ width: '25px', height: '25px', display: 'block', borderRadius: '6px', objectFit: 'cover' }} />
               </span>
               <span className="link-copy">
                 <span className="link-title">Cardápio - Levar para casa</span>
