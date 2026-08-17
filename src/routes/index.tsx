@@ -123,7 +123,6 @@ const css = `
     .logo-wrap { width: 154px; height: 154px; }
     .link { grid-template-columns: 43px 1fr 20px; }
     .link-description { font-size: .8rem; }
-    .mini-actions { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     .pa-root *, .pa-root *::before, .pa-root *::after { scroll-behavior: auto !important; transition: none !important; }
