@@ -481,7 +481,14 @@ function CardapioPage() {
                         rel="noopener noreferrer"
                         aria-label={`Pedir ${item.name} pelo WhatsApp`}
                       >
-                        <MessageCircle size={17} /> Pedir
+                        <img
+                          src={whatsappLogo.url}
+                          alt=""
+                          width={17}
+                          height={17}
+                          style={{ display: "block" }}
+                        />
+                        Pedir
                       </a>
                     ) : (
                       <span className="order-button" aria-disabled="true">
