@@ -484,8 +484,8 @@ function CardapioPage() {
                         <img
                           src={whatsappLogo.url}
                           alt=""
-                          width={17}
-                          height={17}
+                          width={22}
+                          height={22}
                           style={{ display: "block" }}
                         />
                         Pedir
