@@ -89,6 +89,11 @@ const css = `
     color: #f8ecf9; text-align: left; line-height: 1.42;
   }
   .address svg { flex: 0 0 auto; width: 24px; height: 24px; margin-top: 1px; color: var(--pink); }
+  .footer-address {
+    display: flex; justify-content: center; align-items: center; gap: 6px;
+    margin-top: 10px; color: rgba(255,255,255,.72); font-size: .72rem; line-height: 1.3;
+  }
+  .footer-address svg { width: 14px; height: 14px; color: var(--pink); }
   .links { display: grid; gap: 13px; }
   .link {
     position: relative; display: grid; grid-template-columns: 46px 1fr 24px; align-items: center;
