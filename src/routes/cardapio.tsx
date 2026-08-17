@@ -482,6 +482,7 @@ function CardapioPage() {
                         aria-label={`Pedir ${item.name} pelo WhatsApp`}
                       >
                         <img
+                          className="order-icon"
                           src={whatsappLogo.url}
                           alt=""
                           width={28}
