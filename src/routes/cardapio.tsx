@@ -376,8 +376,7 @@ const css = `
     .item-copy { grid-column: 1 / 2; }
     .item-dots { display: none; }
     .item-price { grid-column: 2; grid-row: 1; min-width: 83px; padding: 6px 9px; font-size: .84rem; }
-    .order-button { grid-column: 1 / -1; width: 100%; min-height: 54px; gap: 12px; font-size: 1.05rem; }
-    .order-button .order-icon { width: 36px; height: 36px; }
+    .order-button { grid-column: 1 / -1; width: 100%; min-height: 40px; }
     .unavailable-badge { right: 5px; top: 49px; translate: 0 0; font-size: .62rem; }
     .footer-address { align-items: flex-start; text-align: left; }
   }
@@ -483,7 +482,6 @@ function CardapioPage() {
                         aria-label={`Pedir ${item.name} pelo WhatsApp`}
                       >
                         <img
-                          className="order-icon"
                           src={whatsappLogo.url}
                           alt=""
                           width={28}
