@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   ArrowLeft,
@@ -404,7 +404,9 @@ function buildWhatsAppUrl(item: MenuItem) {
 }
 
 function CardapioPage() {
-  const [activeTab, setActiveTab] = useState<MenuTab>("local");
+  const search = useSearch({ from: "/cardapio" }) as { tab?: string };
+  const initialTab: MenuTab = search.tab === "casa" ? "casa" : "local";
+  const [activeTab, setActiveTab] = useState<MenuTab>(initialTab);
   const sections = useMemo(() => menuCatalog[activeTab], [activeTab]);
   const subtitle = activeTab === "local" ? "Consumo no Local" : "Leve para Casa";
 
