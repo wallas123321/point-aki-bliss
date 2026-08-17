@@ -2,12 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   ArrowLeft,
-  MessageCircle,
   MapPin,
   ShoppingBag,
   UtensilsCrossed,
 } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
+import whatsappLogo from "@/assets/whatsapp-logo.png.asset.json";
 import { menuCatalog, type MenuItem, type MenuTab } from "@/data/menu";
 
 const whatsappNumber = "554498721016";
