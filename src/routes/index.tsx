@@ -151,40 +151,6 @@ function Arrow() {
 }
 
 function Index() {
-  const [toast, setToast] = useState<string | null>(null);
-
-  const showToast = (message: string) => {
-    setToast(message);
-    window.setTimeout(() => setToast(null), 1800);
-  };
-
-  const copyAddress = async () => {
-    try {
-      await navigator.clipboard.writeText(address);
-      showToast("Copiado!");
-    } catch {
-      showToast("Não foi possível copiar");
-    }
-  };
-
-  const sharePage = async () => {
-    const url = window.location.href;
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "Point Aki do Açaí", url });
-        return;
-      } catch {
-        /* cancelado */
-      }
-    }
-    try {
-      await navigator.clipboard.writeText(url);
-      showToast("Link copiado!");
-    } catch {
-      showToast("Não foi possível compartilhar");
-    }
-  };
-
   return (
     <div className="pa-root">
       <style dangerouslySetInnerHTML={{ __html: css }} />
