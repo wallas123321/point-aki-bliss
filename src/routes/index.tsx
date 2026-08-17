@@ -248,15 +248,24 @@ function Index() {
               <Arrow />
             </a>
 
-            <a className="link menu" href="/cardapio" aria-label="Cardápio">
+            <a className="link menu" href="/cardapio?tab=local" aria-label="Cardápio para consumo no local">
               <span className="icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M3 6h18M3 12h18M3 18h18" />
-                </svg>
+                <UtensilsCrossed size={25} color="#fff" />
               </span>
               <span className="link-copy">
-                <span className="link-title">Cardápio</span>
-                <span className="link-description"></span>
+                <span className="link-title">Consumo no local</span>
+                <span className="link-description">Ver cardápio para comer aqui</span>
+              </span>
+              <Arrow />
+            </a>
+
+            <a className="link menu" href="/cardapio?tab=casa" aria-label="Cardápio para levar para casa">
+              <span className="icon">
+                <ShoppingBag size={25} color="#fff" />
+              </span>
+              <span className="link-copy">
+                <span className="link-title">Levar para casa</span>
+                <span className="link-description">Ver cardápio para viagem</span>
               </span>
               <Arrow />
             </a>
