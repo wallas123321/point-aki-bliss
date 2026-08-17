@@ -170,6 +170,28 @@ function Index() {
               <Arrow />
             </a>
 
+            <a className="link menu" href="/cardapio?tab=local" aria-label="Cardápio para consumo no local">
+              <span className="icon">
+                <UtensilsCrossed size={25} color="#fff" />
+              </span>
+              <span className="link-copy">
+                <span className="link-title">Consumo no local</span>
+                <span className="link-description">Ver cardápio para comer aqui</span>
+              </span>
+              <Arrow />
+            </a>
+
+            <a className="link menu" href="/cardapio?tab=casa" aria-label="Cardápio para levar para casa">
+              <span className="icon">
+                <ShoppingBag size={25} color="#fff" />
+              </span>
+              <span className="link-copy">
+                <span className="link-title">Levar para casa</span>
+                <span className="link-description">Ver cardápio para viagem</span>
+              </span>
+              <Arrow />
+            </a>
+
             <a className="link maps" href={mapsUrl} target="_blank" rel="noopener noreferrer">
               <span className="icon">
                 <img src={locationPinAsset.url} alt="" style={{ width: '25px', height: '25px', display: 'block' }} />
@@ -192,28 +214,6 @@ function Index() {
               <span className="link-copy">
                 <span className="link-title">@point.akidoacai</span>
                 <span className="link-description">Acompanhe novidades e pratos</span>
-              </span>
-              <Arrow />
-            </a>
-
-            <a className="link menu" href="/cardapio?tab=local" aria-label="Cardápio para consumo no local">
-              <span className="icon">
-                <UtensilsCrossed size={25} color="#fff" />
-              </span>
-              <span className="link-copy">
-                <span className="link-title">Consumo no local</span>
-                <span className="link-description">Ver cardápio para comer aqui</span>
-              </span>
-              <Arrow />
-            </a>
-
-            <a className="link menu" href="/cardapio?tab=casa" aria-label="Cardápio para levar para casa">
-              <span className="icon">
-                <ShoppingBag size={25} color="#fff" />
-              </span>
-              <span className="link-copy">
-                <span className="link-title">Levar para casa</span>
-                <span className="link-description">Ver cardápio para viagem</span>
               </span>
               <Arrow />
             </a>
