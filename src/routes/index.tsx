@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+
 import { ShoppingBag, UtensilsCrossed } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
 
@@ -116,26 +116,13 @@ const css = `
   .link-title { display: block; font-weight: 800; font-size: 1.02rem; }
   .link-description { display: block; margin-top: 3px; color: var(--muted); font-size: .86rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .arrow { width: 21px; height: 21px; opacity: .72; }
-  .mini-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 13px; }
-  .mini-button {
-    min-height: 45px; border: 1px solid var(--line); border-radius: 15px; color: #f7eaf8;
-    background: rgba(255,255,255,.055); font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer;
-  }
-  .mini-button:hover { background: rgba(255,255,255,.10); }
   .footer { padding-top: 22px; color: rgba(255,255,255,.62); text-align: center; font-size: .78rem; }
-  .toast {
-    position: fixed; left: 50%; bottom: 24px; z-index: 5; translate: -50% 18px; padding: 11px 16px;
-    border-radius: 999px; color: #27002f; background: #fff; box-shadow: 0 12px 38px rgba(0,0,0,.35);
-    font-weight: 800; opacity: 0; pointer-events: none; transition: .22s ease;
-  }
-  .toast.show { translate: -50% 0; opacity: 1; }
   @media (max-width: 390px) {
     .page { padding-inline: 12px; }
     .card { padding-inline: 15px; }
     .logo-wrap { width: 154px; height: 154px; }
     .link { grid-template-columns: 43px 1fr 20px; }
     .link-description { font-size: .8rem; }
-    .mini-actions { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     .pa-root *, .pa-root *::before, .pa-root *::after { scroll-behavior: auto !important; transition: none !important; }
@@ -151,40 +138,6 @@ function Arrow() {
 }
 
 function Index() {
-  const [toast, setToast] = useState<string | null>(null);
-
-  const showToast = (message: string) => {
-    setToast(message);
-    window.setTimeout(() => setToast(null), 1800);
-  };
-
-  const copyAddress = async () => {
-    try {
-      await navigator.clipboard.writeText(address);
-      showToast("Copiado!");
-    } catch {
-      showToast("Não foi possível copiar");
-    }
-  };
-
-  const sharePage = async () => {
-    const url = window.location.href;
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "Point Aki do Açaí", url });
-        return;
-      } catch {
-        /* cancelado */
-      }
-    }
-    try {
-      await navigator.clipboard.writeText(url);
-      showToast("Link copiado!");
-    } catch {
-      showToast("Não foi possível compartilhar");
-    }
-  };
-
   return (
     <div className="pa-root">
       <style dangerouslySetInnerHTML={{ __html: css }} />
@@ -269,15 +222,6 @@ function Index() {
 
           </nav>
 
-          <div className="mini-actions">
-            <button className="mini-button" type="button" onClick={copyAddress}>
-              Copiar endereço
-            </button>
-            <button className="mini-button" type="button" onClick={sharePage}>
-              Compartilhar página
-            </button>
-          </div>
-
           <footer className="footer">
             Point Aki do Açaí • Maringá, Paraná
             <div className="footer-address">
@@ -291,9 +235,6 @@ function Index() {
         </div>
       </div>
 
-      <div className={toast ? "toast show" : "toast"} role="status" aria-live="polite">
-        {toast ?? "Copiado!"}
-      </div>
     </div>
   );
 }
