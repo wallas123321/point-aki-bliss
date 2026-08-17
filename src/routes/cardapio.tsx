@@ -513,7 +513,14 @@ function CardapioPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <MessageCircle size={24} /> WhatsApp: (44) 9872-1016
+            <img
+              src={whatsappLogo.url}
+              alt=""
+              width={24}
+              height={24}
+              style={{ display: "block" }}
+            />
+            WhatsApp: (44) 9872-1016
           </a>
           <div className="footer-address">
             <MapPin size={20} color="#cf28bd" />
