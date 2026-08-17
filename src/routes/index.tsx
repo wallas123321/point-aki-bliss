@@ -116,19 +116,7 @@ const css = `
   .link-title { display: block; font-weight: 800; font-size: 1.02rem; }
   .link-description { display: block; margin-top: 3px; color: var(--muted); font-size: .86rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .arrow { width: 21px; height: 21px; opacity: .72; }
-  .mini-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 13px; }
-  .mini-button {
-    min-height: 45px; border: 1px solid var(--line); border-radius: 15px; color: #f7eaf8;
-    background: rgba(255,255,255,.055); font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer;
-  }
-  .mini-button:hover { background: rgba(255,255,255,.10); }
   .footer { padding-top: 22px; color: rgba(255,255,255,.62); text-align: center; font-size: .78rem; }
-  .toast {
-    position: fixed; left: 50%; bottom: 24px; z-index: 5; translate: -50% 18px; padding: 11px 16px;
-    border-radius: 999px; color: #27002f; background: #fff; box-shadow: 0 12px 38px rgba(0,0,0,.35);
-    font-weight: 800; opacity: 0; pointer-events: none; transition: .22s ease;
-  }
-  .toast.show { translate: -50% 0; opacity: 1; }
   @media (max-width: 390px) {
     .page { padding-inline: 12px; }
     .card { padding-inline: 15px; }
