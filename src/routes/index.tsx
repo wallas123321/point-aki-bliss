@@ -248,9 +248,6 @@ function Index() {
         </div>
       </div>
 
-      <div className={toast ? "toast show" : "toast"} role="status" aria-live="polite">
-        {toast ?? "Copiado!"}
-      </div>
     </div>
   );
 }
