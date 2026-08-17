@@ -2,12 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   ArrowLeft,
-  MessageCircle,
   MapPin,
   ShoppingBag,
   UtensilsCrossed,
 } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
+import whatsappLogo from "@/assets/whatsapp-logo.png.asset.json";
 import { menuCatalog, type MenuItem, type MenuTab } from "@/data/menu";
 
 const whatsappNumber = "554498721016";
@@ -481,7 +481,14 @@ function CardapioPage() {
                         rel="noopener noreferrer"
                         aria-label={`Pedir ${item.name} pelo WhatsApp`}
                       >
-                        <MessageCircle size={17} /> Pedir
+                        <img
+                          src={whatsappLogo.url}
+                          alt=""
+                          width={17}
+                          height={17}
+                          style={{ display: "block" }}
+                        />
+                        Pedir
                       </a>
                     ) : (
                       <span className="order-button" aria-disabled="true">
@@ -506,7 +513,14 @@ function CardapioPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <MessageCircle size={24} /> WhatsApp: (44) 9872-1016
+            <img
+              src={whatsappLogo.url}
+              alt=""
+              width={24}
+              height={24}
+              style={{ display: "block" }}
+            />
+            WhatsApp: (44) 9872-1016
           </a>
           <div className="footer-address">
             <MapPin size={20} color="#cf28bd" />
