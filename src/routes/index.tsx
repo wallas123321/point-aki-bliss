@@ -172,7 +172,7 @@ function Index() {
 
             <a className="link menu" href="/cardapio?tab=local" aria-label="Cardápio para consumo no local">
               <span className="icon">
-                <UtensilsCrossed size={25} color="#fff" />
+                <NotebookText size={25} color="#fff" />
               </span>
               <span className="link-copy">
                 <span className="link-title">Cardápio - Consumo no local</span>
