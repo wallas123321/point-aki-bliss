@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { NotebookText, Package } from "lucide-react";
+import { NotebookText } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
 import locationPinAsset from "@/assets/location-pin.png.asset.json";
+import kitLevarCasaAsset from "@/assets/kit-levar-casa.png.asset.json";
 
 const whatsappUrl =
   "https://wa.me/554498721016?text=Ol%C3%A1%2C%20vim%20pelo%20Instagram%2C%20queria%20mais%20informa%C3%A7%C3%B5es.";
