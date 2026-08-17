@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { ShoppingBag, UtensilsCrossed } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
+import locationPinAsset from "@/assets/location-pin.png.asset.json";
 
 const whatsappUrl =
   "https://wa.me/554498721016?text=Ol%C3%A1%2C%20vim%20pelo%20Instagram%2C%20queria%20mais%20informa%C3%A7%C3%B5es.";
@@ -171,10 +172,7 @@ function Index() {
 
             <a className="link maps" href={mapsUrl} target="_blank" rel="noopener noreferrer">
               <span className="icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0Z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
+                <img src={locationPinAsset.url} alt="" style={{ width: '25px', height: '25px', display: 'block' }} />
               </span>
               <span className="link-copy">
                 <span className="link-title">Como chegar</span>
