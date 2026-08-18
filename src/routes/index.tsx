@@ -195,8 +195,8 @@ function Index() {
                 </svg>
               </span>
               <span className="link-copy">
-                <span className="link-title">@point.akidoacai</span>
-                <span className="link-description">Acompanhe novidades e pratos</span>
+                <span className="link-title">Siga nosso Instagram</span>
+                <span className="link-description">@point.akidoacai</span>
               </span>
               <Arrow />
             </a>
