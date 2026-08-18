@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowLeft,
   MapPin,
@@ -10,6 +11,7 @@ import logo from "@/assets/logo-point-aki.png";
 import whatsappLogo from "@/assets/whatsapp-logo.png.asset.json";
 import bandeiraPara from "@/assets/bandeira-para.png.asset.json";
 import { menuCatalog, type MenuItem, type MenuTab } from "@/data/menu";
+import { getMenuOverrides, type MenuOverride } from "@/lib/menu.functions";
 
 const whatsappNumber = "554498721016";
 const address = "R. Ver. Joaquim Pereira de Castro, 311 - Vila Santo Antônio, Maringá";
