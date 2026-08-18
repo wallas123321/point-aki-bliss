@@ -387,6 +387,7 @@ const css = `
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: .02em;
+    white-space: nowrap;
   }
 
   .footer-whatsapp img {
@@ -442,7 +443,7 @@ const css = `
     .order-button { grid-column: 1 / -1; width: 100%; min-height: 40px; }
     .order-button img { width: 48px; height: 48px; }
     .unavailable-badge { right: 5px; top: 49px; translate: 0 0; font-size: .62rem; }
-    .footer-whatsapp { gap: 10px; min-height: 62px; padding: 0 18px; font-size: .78rem; }
+    .footer-whatsapp { gap: 10px; min-height: 62px; padding: 0 14px; font-size: .72rem; }
     .footer-whatsapp img { width: 50px; height: 50px; }
     .footer-address { align-items: flex-start; text-align: left; }
   }
