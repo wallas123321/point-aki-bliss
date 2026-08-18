@@ -52,7 +52,7 @@ export const getMenuOverrides = createServerFn({ method: "GET" }).handler(
 );
 
 export const adminStatus = createServerFn({ method: "POST" })
-  .inputValidator((data: { token?: string }) => data ?? {})
+  .inputValidator((data: { token?: string | undefined }) => data ?? {})
   .handler(async ({ data }) => {
     try {
       requireAdmin(data.token);
@@ -75,7 +75,7 @@ export const adminLogin = createServerFn({ method: "POST" })
 
 export const saveMenuItem = createServerFn({ method: "POST" })
   .inputValidator(
-    (data: { itemId: string; price: number; available: boolean; token?: string }) => {
+    (data: { itemId: string; price: number; available: boolean; token?: string | undefined }) => {
     if (!data.itemId || typeof data.itemId !== "string") throw new Error("Item inválido");
     if (!Number.isFinite(data.price) || data.price < 0 || data.price > 100000) {
       throw new Error("Preço inválido");
