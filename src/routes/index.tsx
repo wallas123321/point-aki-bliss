@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import logo from "@/assets/logo-point-aki.png";
-import locationPinAsset from "@/assets/location-pin.png.asset.json";
+import googleMapsPinAsset from "@/assets/google-maps-pin.png.asset.json";
 import levarCasaAsset from "@/assets/levar-casa.png.asset.json";
 import consumoLocalAsset from "@/assets/consumo-local.png.asset.json";
 
@@ -177,7 +177,7 @@ function Index() {
 
             <a className="link maps" href={mapsUrl} target="_blank" rel="noopener noreferrer">
               <span className="icon">
-                <img src={locationPinAsset.url} alt="" style={{ width: '25px', height: '25px', display: 'block' }} />
+                <img src={googleMapsPinAsset.url} alt="" style={{ width: '44px', height: '44px', display: 'block', borderRadius: '15px', objectFit: 'cover' }} />
               </span>
               <span className="link-copy">
                 <span className="link-title">Como chegar</span>
