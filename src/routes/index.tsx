@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { NotebookText } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
 import locationPinAsset from "@/assets/location-pin.png.asset.json";
 import kitLevarCasaAsset from "@/assets/kit-levar-casa.png.asset.json";
+import consumoLocalAsset from "@/assets/consumo-local.png.asset.json";
 
 const whatsappUrl =
   "https://wa.me/554498721016?text=Ol%C3%A1%2C%20vim%20pelo%20Instagram%2C%20queria%20mais%20informa%C3%A7%C3%B5es.";
@@ -174,7 +174,7 @@ function Index() {
 
             <a className="link menu" href="/cardapio?tab=local" aria-label="Cardápio para consumo no local">
               <span className="icon">
-                <NotebookText size={25} color="#fff" />
+                <img src={consumoLocalAsset.url} alt="" style={{ width: '44px', height: '44px', display: 'block', borderRadius: '15px', objectFit: 'cover' }} />
               </span>
               <span className="link-copy">
                 <span className="link-title">Cardápio - Consumo no local</span>
