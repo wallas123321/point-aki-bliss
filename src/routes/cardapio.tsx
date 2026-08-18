@@ -353,14 +353,15 @@ const css = `
     .menu-shell { padding: 10px 9px 26px; }
     .ornament-line { margin-bottom: 12px; }
     .menu-header {
-      grid-template-columns: 92px 1fr;
+      grid-template-columns: 88px 1fr;
       gap: 10px;
       padding: 13px 10px 16px;
     }
-    .menu-logo { width: 88px; height: 88px; }
-    .menu-brand-name { font-size: clamp(1.35rem, 6.8vw, 2rem); }
-    .menu-title { margin-top: 7px; font-size: clamp(2.45rem, 13.2vw, 4.3rem); }
-    .menu-subtitle { font-size: clamp(1rem, 5.3vw, 1.45rem); }
+    .menu-logo { width: 84px; height: 84px; }
+    .menu-brand { min-width: 0; }
+    .menu-brand-name { font-size: clamp(1.15rem, 5.6vw, 1.7rem); }
+    .menu-title { margin-top: 6px; font-size: clamp(1.7rem, 8.5vw, 2.8rem); }
+    .menu-subtitle { font-size: clamp(.92rem, 4.4vw, 1.25rem); }
     .menu-toolbar { grid-template-columns: 1fr; }
     .back-link { width: fit-content; min-height: 40px; }
     .menu-tabs { position: sticky; top: 8px; z-index: 20; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
