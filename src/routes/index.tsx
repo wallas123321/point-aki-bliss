@@ -154,7 +154,7 @@ function Index() {
               <span>Tradição paraense</span>
             </div>
             <p className="headline">
-              <strong>Açaí paraense de verdade</strong>
+              <strong>Comida paraense de verdade</strong>
               <br />O sabor do Pará agora em Maringá.
             </p>
           </header>
