@@ -82,6 +82,7 @@ const css = `
     border: 1px solid rgba(207,40,189,.28);
     background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.008));
     box-shadow: 0 22px 60px rgba(0,0,0,.32);
+    overflow: hidden;
   }
 
   .menu-header::after {
@@ -90,6 +91,27 @@ const css = `
     inset: auto 0 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--menu-magenta), transparent);
+    z-index: 2;
+  }
+
+  .menu-header-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: .55;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .menu-header-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8,5,9,.55), rgba(8,5,9,.78));
+    z-index: 1;
+    pointer-events: none;
   }
 
   .menu-logo {
