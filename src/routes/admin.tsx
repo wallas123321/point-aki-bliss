@@ -284,20 +284,23 @@ function AdminPage() {
                       key={item.id}
                     >
                       <span className="adm-name">{item.name}</span>
-                      <input
-                        className="adm-input adm-price"
-                        type="number"
-                        step="0.01"
-                        min="0"
-                        value={draft.price}
-                        onChange={(e) =>
-                          setDrafts((d) => ({
-                            ...d,
-                            [item.id]: { ...draft, price: e.target.value },
-                          }))
-                        }
-                        onBlur={() => persist(item.id, drafts[item.id] ?? draft)}
-                      />
+                      <label className="adm-price-wrap" aria-label="Preço">
+                        <span className="adm-price-prefix">R$</span>
+                        <input
+                          className="adm-input adm-price"
+                          type="number"
+                          step="0.01"
+                          min="0"
+                          value={draft.price}
+                          onChange={(e) =>
+                            setDrafts((d) => ({
+                              ...d,
+                              [item.id]: { ...draft, price: e.target.value },
+                            }))
+                          }
+                          onBlur={() => persist(item.id, drafts[item.id] ?? draft)}
+                        />
+                      </label>
                       <button
                         type="button"
                         className={`adm-toggle ${draft.available ? "" : "off"}`}
