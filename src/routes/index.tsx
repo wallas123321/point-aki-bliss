@@ -4,6 +4,7 @@ import logo from "@/assets/logo-point-aki.png";
 import googleMapsPinAsset from "@/assets/google-maps-pin.png.asset.json";
 import levarCasaAsset from "@/assets/levar-casa.png.asset.json";
 import consumoLocalAsset from "@/assets/consumo-local.png.asset.json";
+import bandeiraParaAsset from "@/assets/bandeira-para.png.asset.json";
 
 const mapsUrl = "https://share.google/Ki5s6pwdYh4Apfe2r";
 const instagramUrl = "https://www.instagram.com/point.akidoacai/";
@@ -146,6 +147,10 @@ function Index() {
               <img className="logo" src={logo} alt="Logo Point Aki do Açaí" width={816} height={816} />
             </div>
             <h1>Point Aki do Açaí</h1>
+            <div className="para-badge">
+              <img src={bandeiraParaAsset.url} alt="Bandeira do Pará" width={28} height={19} />
+              <span>Tradição paraense</span>
+            </div>
             <p className="headline">
               <strong>Açaí paraense de verdade</strong>
               <br />O sabor do Pará agora em Maringá.
