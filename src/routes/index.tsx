@@ -62,12 +62,13 @@ const css = `
   }
   .pa-root::before { background: var(--magenta); top: -14rem; right: -10rem; }
   .pa-root::after { background: var(--purple-600); bottom: -15rem; left: -11rem; }
-  .page { position: relative; z-index: 1; width: min(100%, 560px); margin: 0 auto; padding: 32px 18px 42px; }
+  .page { position: relative; z-index: 1; width: 100%; margin: 0; padding: 0; }
   .card {
-    position: relative; overflow: hidden; padding: 30px 22px 24px;
-    border: 1px solid rgba(255,255,255,.18); border-radius: 34px;
+    position: relative; overflow: hidden; padding: 24px 14px 32px;
+    border: none; border-radius: 0;
     background: linear-gradient(180deg, rgba(92,8,109,.28), rgba(20,0,25,.75)), var(--card);
-    box-shadow: var(--shadow); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    box-shadow: none; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    min-height: 100vh;
   }
   .card::before {
     content: ""; position: absolute; inset: 0 0 auto; height: 5px;
@@ -116,8 +117,7 @@ const css = `
   .arrow { width: 21px; height: 21px; opacity: .72; }
   .footer { padding-top: 22px; color: rgba(255,255,255,.62); text-align: center; font-size: .78rem; }
   @media (max-width: 390px) {
-    .page { padding-inline: 12px; }
-    .card { padding-inline: 15px; }
+    .card { padding-inline: 12px; }
     .logo-wrap { width: 154px; height: 154px; }
     .link { grid-template-columns: 43px 1fr 20px; }
     .link-description { font-size: .8rem; }
