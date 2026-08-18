@@ -5,7 +5,6 @@ import { ArrowLeft, Lock, LogOut } from "lucide-react";
 import { menuCatalog, type MenuTab } from "@/data/menu";
 import {
   adminLogin,
-  adminLogout,
   adminStatus,
   getMenuOverrides,
   saveMenuItem,
@@ -108,7 +107,6 @@ type Draft = { price: string; available: boolean };
 
 function AdminPage() {
   const login = useServerFn(adminLogin);
-  const logout = useServerFn(adminLogout);
   const status = useServerFn(adminStatus);
   const fetchOverrides = useServerFn(getMenuOverrides);
   const save = useServerFn(saveMenuItem);
@@ -120,6 +118,7 @@ function AdminPage() {
   const [tab, setTab] = useState<MenuTab>("local");
   const [drafts, setDrafts] = useState<Record<string, Draft>>({});
   const [savingId, setSavingId] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
   function seedDrafts(overrides: MenuOverride[]) {
     const map = new Map(overrides.map((o) => [o.item_id, o]));
@@ -141,11 +140,14 @@ function AdminPage() {
   useEffect(() => {
     let active = true;
     (async () => {
+      const stored =
+        typeof window !== "undefined" ? window.localStorage.getItem("menu-admin-token") : null;
       const [{ unlocked: isUnlocked }, overrides] = await Promise.all([
-        status(),
+        status({ data: { token: stored ?? undefined } }),
         fetchOverrides(),
       ]);
       if (!active) return;
+      if (isUnlocked) setToken(stored);
       setUnlocked(isUnlocked);
       seedDrafts(overrides);
       setChecking(false);
@@ -159,8 +161,10 @@ function AdminPage() {
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    const { ok } = await login({ data: { password } });
-    if (ok) {
+    const res = await login({ data: { password } });
+    if (res.ok && res.token) {
+      window.localStorage.setItem("menu-admin-token", res.token);
+      setToken(res.token);
       setUnlocked(true);
       setPassword("");
     } else {
@@ -173,7 +177,9 @@ function AdminPage() {
     setError("");
     try {
       const price = Number(draft.price.replace(",", "."));
-      await save({ data: { itemId, price, available: draft.available } });
+      await save({
+        data: { itemId, price, available: draft.available, token: token ?? undefined },
+      });
     } catch {
       setError("Não foi possível salvar. Tente novamente.");
     } finally {
@@ -203,7 +209,8 @@ function AdminPage() {
               type="button"
               className="adm-btn"
               onClick={async () => {
-                await logout();
+                window.localStorage.removeItem("menu-admin-token");
+                setToken(null);
                 setUnlocked(false);
               }}
             >

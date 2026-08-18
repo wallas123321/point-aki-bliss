@@ -1,32 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { useSession, getRequest } from "@tanstack/react-start/server";
-import { createHash, timingSafeEqual } from "node:crypto";
-
-type AdminSession = { unlocked?: boolean };
-
-function sessionOptions() {
-  let isHttps = true;
-  try {
-    isHttps = new URL(getRequest().url).protocol === "https:";
-  } catch {
-    isHttps = true;
-  }
-  return {
-    password: process.env["SESSION_SECRET"] ?? "dev-session-secret-placeholder-000000",
-    name: "menu-admin",
-    maxAge: 60 * 60 * 24 * 7,
-    cookie: {
-      httpOnly: true,
-      secure: isHttps,
-      sameSite: (isHttps ? "none" : "lax") as "none" | "lax",
-      path: "/",
-    },
-  };
-}
-
-function getAdminSession() {
-  return useSession<AdminSession>(sessionOptions());
-}
+import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 
 function matches(input: string, expected: string) {
   const a = createHash("sha256").update(input, "utf8").digest();
@@ -34,10 +7,27 @@ function matches(input: string, expected: string) {
   return timingSafeEqual(a, b);
 }
 
-async function requireAdmin() {
-  const session = await getAdminSession();
-  if (!session.data.unlocked) throw new Error("Não autorizado");
-  return session;
+const TOKEN_TTL_MS = 1000 * 60 * 60 * 24 * 7;
+
+function signPayload(payload: string) {
+  const secret = process.env["SESSION_SECRET"] ?? "dev-session-secret-placeholder";
+  return createHmac("sha256", secret).update(payload).digest("hex");
+}
+
+function issueToken() {
+  const exp = String(Date.now() + TOKEN_TTL_MS);
+  return `${exp}.${signPayload(exp)}`;
+}
+
+function requireAdmin(token: string | undefined) {
+  const [exp, sig] = (token ?? "").split(".");
+  if (!exp || !sig) throw new Error("Não autorizado");
+  if (Number(exp) < Date.now()) throw new Error("Não autorizado");
+  const expected = signPayload(exp);
+  if (sig.length !== expected.length) throw new Error("Não autorizado");
+  if (!timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) {
+    throw new Error("Não autorizado");
+  }
 }
 
 export type MenuOverride = {
@@ -61,38 +51,45 @@ export const getMenuOverrides = createServerFn({ method: "GET" }).handler(
   },
 );
 
-export const adminStatus = createServerFn({ method: "GET" }).handler(async () => {
-  const session = await getAdminSession();
-  return { unlocked: Boolean(session.data.unlocked) };
-});
+export const adminStatus = createServerFn({ method: "POST" })
+  .inputValidator((data: { token?: string | undefined }) => data ?? {})
+  .handler(async ({ data }) => {
+    try {
+      requireAdmin(data.token);
+      return { unlocked: true };
+    } catch {
+      return { unlocked: false };
+    }
+  });
 
 export const adminLogin = createServerFn({ method: "POST" })
   .inputValidator((data: { password: string }) => data)
   .handler(async ({ data }) => {
     const expected = process.env["MENU_ADMIN_PASSWORD"];
     if (!expected) return { ok: false as const };
-    if (!matches(data.password ?? "", expected)) return { ok: false as const };
-    const session = await getAdminSession();
-    await session.update({ unlocked: true });
-    return { ok: true as const };
+    if (!matches(data.password ?? "", expected)) {
+      return { ok: false as const, token: null };
+    }
+    return { ok: true as const, token: issueToken() };
   });
 
-export const adminLogout = createServerFn({ method: "POST" }).handler(async () => {
-  const session = await getAdminSession();
-  await session.clear();
-  return { ok: true as const };
-});
-
 export const saveMenuItem = createServerFn({ method: "POST" })
-  .inputValidator((data: { itemId: string; price: number; available: boolean }) => {
+  .inputValidator(
+    (data: { itemId: string; price: number; available: boolean; token?: string | undefined }) => {
     if (!data.itemId || typeof data.itemId !== "string") throw new Error("Item inválido");
     if (!Number.isFinite(data.price) || data.price < 0 || data.price > 100000) {
       throw new Error("Preço inválido");
     }
-    return { itemId: data.itemId, price: data.price, available: Boolean(data.available) };
-  })
+      return {
+        itemId: data.itemId,
+        price: data.price,
+        available: Boolean(data.available),
+        token: data.token,
+      };
+    },
+  )
   .handler(async ({ data }) => {
-    await requireAdmin();
+    requireAdmin(data.token);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin.from("menu_overrides").upsert(
       {
