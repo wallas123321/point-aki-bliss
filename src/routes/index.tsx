@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import logo from "@/assets/logo-point-aki.png";
 import googleMapsPinAsset from "@/assets/google-maps-pin.png.asset.json";
