@@ -202,19 +202,26 @@ const css = `
     justify-content: center;
     gap: 9px;
     min-height: 48px;
-    border: 0;
+    border: 1px solid rgba(207,40,189,.28);
     border-radius: 11px;
     color: #d9c8da;
-    background: transparent;
+    background: rgba(255,255,255,.045);
     font-family: "Montserrat", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-weight: 900;
     cursor: pointer;
     transition: .18s ease;
   }
 
+  .menu-tab:hover {
+    color: #fff;
+    background: rgba(255,255,255,.09);
+    border-color: rgba(207,40,189,.55);
+  }
+
   .menu-tab.active {
     color: #fff;
     background: linear-gradient(135deg, #5c075f, #aa159f);
+    border-color: transparent;
     box-shadow: 0 8px 24px rgba(143,13,139,.28), inset 0 1px 0 rgba(255,255,255,.16);
   }
 
@@ -256,11 +263,14 @@ const css = `
     gap: 12px;
     align-items: center;
     min-height: 68px;
-    padding: 10px 2px;
-    border-bottom: 1px solid rgba(255,255,255,.07);
-    transition: opacity .18s ease;
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+    background: transparent;
+    transition: opacity .18s ease, background .18s ease;
   }
 
+  .menu-item:nth-child(odd) { background: rgba(255,255,255,.025); }
+  .menu-item:hover { background: rgba(207,40,189,.10); }
   .menu-item:last-child { border-bottom: 0; }
 
   .item-copy { min-width: 0; }
