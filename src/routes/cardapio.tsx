@@ -445,6 +445,13 @@ function CardapioPage() {
         <div className="ornament-line" aria-hidden="true" />
 
         <header className="menu-header">
+          <img
+            className="menu-header-bg"
+            src={bandeiraPara.url}
+            alt=""
+            aria-hidden="true"
+          />
+          <div className="menu-header-overlay" aria-hidden="true" />
           <img className="menu-logo" src={logo} alt="Point Aki do Açaí" />
           <div className="menu-brand">
             <h1 className="menu-brand-name">
