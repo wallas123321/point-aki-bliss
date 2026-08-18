@@ -189,7 +189,7 @@ function Index() {
               </span>
               <span className="link-copy">
                 <span className="link-title">Cardápio - Levar para casa</span>
-                <span className="link-description">Ver cardápio para viagem</span>
+                <span className="link-description">Ver cardápio para viagem/retirada</span>
               </span>
               <Arrow />
             </a>
