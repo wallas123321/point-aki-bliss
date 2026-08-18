@@ -1,32 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { useSession, getRequest } from "@tanstack/react-start/server";
-import { createHash, timingSafeEqual } from "node:crypto";
-
-type AdminSession = { unlocked?: boolean };
-
-function sessionOptions() {
-  let isHttps = true;
-  try {
-    isHttps = new URL(getRequest().url).protocol === "https:";
-  } catch {
-    isHttps = true;
-  }
-  return {
-    password: process.env["SESSION_SECRET"] ?? "dev-session-secret-placeholder-000000",
-    name: "menu-admin",
-    maxAge: 60 * 60 * 24 * 7,
-    cookie: {
-      httpOnly: true,
-      secure: isHttps,
-      sameSite: (isHttps ? "none" : "lax") as "none" | "lax",
-      path: "/",
-    },
-  };
-}
-
-function getAdminSession() {
-  return useSession<AdminSession>(sessionOptions());
-}
+import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 
 function matches(input: string, expected: string) {
   const a = createHash("sha256").update(input, "utf8").digest();
@@ -34,10 +7,27 @@ function matches(input: string, expected: string) {
   return timingSafeEqual(a, b);
 }
 
-async function requireAdmin() {
-  const session = await getAdminSession();
-  if (!session.data.unlocked) throw new Error("Não autorizado");
-  return session;
+const TOKEN_TTL_MS = 1000 * 60 * 60 * 24 * 7;
+
+function signPayload(payload: string) {
+  const secret = process.env["SESSION_SECRET"] ?? "dev-session-secret-placeholder";
+  return createHmac("sha256", secret).update(payload).digest("hex");
+}
+
+function issueToken() {
+  const exp = String(Date.now() + TOKEN_TTL_MS);
+  return `${exp}.${signPayload(exp)}`;
+}
+
+function requireAdmin(token: string | undefined) {
+  const [exp, sig] = (token ?? "").split(".");
+  if (!exp || !sig) throw new Error("Não autorizado");
+  if (Number(exp) < Date.now()) throw new Error("Não autorizado");
+  const expected = signPayload(exp);
+  if (sig.length !== expected.length) throw new Error("Não autorizado");
+  if (!timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) {
+    throw new Error("Não autorizado");
+  }
 }
 
 export type MenuOverride = {
