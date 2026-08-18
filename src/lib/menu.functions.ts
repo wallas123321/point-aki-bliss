@@ -51,38 +51,45 @@ export const getMenuOverrides = createServerFn({ method: "GET" }).handler(
   },
 );
 
-export const adminStatus = createServerFn({ method: "GET" }).handler(async () => {
-  const session = await getAdminSession();
-  return { unlocked: Boolean(session.data.unlocked) };
-});
+export const adminStatus = createServerFn({ method: "POST" })
+  .inputValidator((data: { token?: string }) => data ?? {})
+  .handler(async ({ data }) => {
+    try {
+      requireAdmin(data.token);
+      return { unlocked: true };
+    } catch {
+      return { unlocked: false };
+    }
+  });
 
 export const adminLogin = createServerFn({ method: "POST" })
   .inputValidator((data: { password: string }) => data)
   .handler(async ({ data }) => {
     const expected = process.env["MENU_ADMIN_PASSWORD"];
     if (!expected) return { ok: false as const };
-    if (!matches(data.password ?? "", expected)) return { ok: false as const };
-    const session = await getAdminSession();
-    await session.update({ unlocked: true });
-    return { ok: true as const };
+    if (!matches(data.password ?? "", expected)) {
+      return { ok: false as const, token: null };
+    }
+    return { ok: true as const, token: issueToken() };
   });
 
-export const adminLogout = createServerFn({ method: "POST" }).handler(async () => {
-  const session = await getAdminSession();
-  await session.clear();
-  return { ok: true as const };
-});
-
 export const saveMenuItem = createServerFn({ method: "POST" })
-  .inputValidator((data: { itemId: string; price: number; available: boolean }) => {
+  .inputValidator(
+    (data: { itemId: string; price: number; available: boolean; token?: string }) => {
     if (!data.itemId || typeof data.itemId !== "string") throw new Error("Item inválido");
     if (!Number.isFinite(data.price) || data.price < 0 || data.price > 100000) {
       throw new Error("Preço inválido");
     }
-    return { itemId: data.itemId, price: data.price, available: Boolean(data.available) };
-  })
+      return {
+        itemId: data.itemId,
+        price: data.price,
+        available: Boolean(data.available),
+        token: data.token,
+      };
+    },
+  )
   .handler(async ({ data }) => {
-    await requireAdmin();
+    requireAdmin(data.token);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin.from("menu_overrides").upsert(
       {
