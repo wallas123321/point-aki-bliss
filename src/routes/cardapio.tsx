@@ -475,7 +475,7 @@ function CardapioPage() {
               className={`menu-tab ${activeTab === "local" ? "active" : ""}`}
               onClick={() => setActiveTab("local")}
             >
-              <UtensilsCrossed size={20} /> Consumo no local
+              <UtensilsCrossed size={20} /> ver cardapio de consumo no local
             </button>
             <button
               type="button"
@@ -484,7 +484,7 @@ function CardapioPage() {
               className={`menu-tab ${activeTab === "casa" ? "active" : ""}`}
               onClick={() => setActiveTab("casa")}
             >
-              <ShoppingBag size={20} /> Leve para casa
+              <ShoppingBag size={20} /> ver cardápio itens para retirada/viagem
             </button>
           </div>
         </div>
