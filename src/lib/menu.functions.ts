@@ -37,7 +37,7 @@ export const adminLogin = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { matchesPassword, issueToken } = await import("./menu-auth.server");
     const expected = process.env["MENU_ADMIN_PASSWORD"];
-    if (!expected) return { ok: false as const };
+    if (!expected) return { ok: false as const, token: null };
     if (!matchesPassword(data.password ?? "", expected)) {
       return { ok: false as const, token: null };
     }
