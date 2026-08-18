@@ -638,11 +638,11 @@ function CardapioPage() {
             <img
               src={whatsappLogo.url}
               alt=""
-              width={24}
-              height={24}
+              width={26}
+              height={26}
               style={{ display: "block" }}
             />
-            WhatsApp: (44) 9872-1016
+            Informações, reservas, dúvidas
           </a>
           <div className="footer-address">
             <MapPin size={20} color="#cf28bd" />
