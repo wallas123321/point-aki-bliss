@@ -371,6 +371,17 @@ const css = `
     text-align: center;
   }
 
+  @keyframes whatsapp-pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 10px 26px rgba(37,211,102,.22), 0 0 0 0 rgba(37,211,102,.35);
+    }
+    50% {
+      transform: scale(1.025);
+      box-shadow: 0 14px 32px rgba(37,211,102,.30), 0 0 22px 8px rgba(37,211,102,.28);
+    }
+  }
+
   .footer-whatsapp {
     display: inline-flex;
     align-items: center;
@@ -381,13 +392,13 @@ const css = `
     border-radius: 14px;
     color: #071b0d;
     background: #25d366;
-    box-shadow: 0 10px 26px rgba(37,211,102,.22);
     font-size: clamp(.74rem, 1.85vw, .98rem);
     font-weight: 950;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: .02em;
     white-space: nowrap;
+    animation: whatsapp-pulse 2.6s ease-in-out infinite;
   }
 
   .footer-whatsapp img {
