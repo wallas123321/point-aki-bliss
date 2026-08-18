@@ -1,15 +1,32 @@
 import { createServerFn } from "@tanstack/react-start";
-import { useSession } from "@tanstack/react-start/server";
+import { useSession, getRequest } from "@tanstack/react-start/server";
 import { createHash, timingSafeEqual } from "node:crypto";
 
 type AdminSession = { unlocked?: boolean };
 
-const sessionConfig = {
-  password: process.env["SESSION_SECRET"] ?? "dev-session-secret-placeholder-000000",
-  name: "menu-admin",
-  maxAge: 60 * 60 * 24 * 7,
-  cookie: { httpOnly: true, secure: true, sameSite: "lax" as const, path: "/" },
-};
+function sessionOptions() {
+  let isHttps = true;
+  try {
+    isHttps = new URL(getRequest().url).protocol === "https:";
+  } catch {
+    isHttps = true;
+  }
+  return {
+    password: process.env["SESSION_SECRET"] ?? "dev-session-secret-placeholder-000000",
+    name: "menu-admin",
+    maxAge: 60 * 60 * 24 * 7,
+    cookie: {
+      httpOnly: true,
+      secure: isHttps,
+      sameSite: (isHttps ? "none" : "lax") as "none" | "lax",
+      path: "/",
+    },
+  };
+}
+
+function getAdminSession() {
+  return useSession<AdminSession>(sessionOptions());
+}
 
 function matches(input: string, expected: string) {
   const a = createHash("sha256").update(input, "utf8").digest();
@@ -18,10 +35,7 @@ function matches(input: string, expected: string) {
 }
 
 async function requireAdmin() {
-  const session = await useSession<AdminSession>({
-    ...sessionConfig,
-    password: process.env["SESSION_SECRET"]!,
-  });
+  const session = await getAdminSession();
   if (!session.data.unlocked) throw new Error("Não autorizado");
   return session;
 }
@@ -48,10 +62,7 @@ export const getMenuOverrides = createServerFn({ method: "GET" }).handler(
 );
 
 export const adminStatus = createServerFn({ method: "GET" }).handler(async () => {
-  const session = await useSession<AdminSession>({
-    ...sessionConfig,
-    password: process.env["SESSION_SECRET"]!,
-  });
+  const session = await getAdminSession();
   return { unlocked: Boolean(session.data.unlocked) };
 });
 
@@ -61,19 +72,13 @@ export const adminLogin = createServerFn({ method: "POST" })
     const expected = process.env["MENU_ADMIN_PASSWORD"];
     if (!expected) return { ok: false as const };
     if (!matches(data.password ?? "", expected)) return { ok: false as const };
-    const session = await useSession<AdminSession>({
-      ...sessionConfig,
-      password: process.env["SESSION_SECRET"]!,
-    });
+    const session = await getAdminSession();
     await session.update({ unlocked: true });
     return { ok: true as const };
   });
 
 export const adminLogout = createServerFn({ method: "POST" }).handler(async () => {
-  const session = await useSession<AdminSession>({
-    ...sessionConfig,
-    password: process.env["SESSION_SECRET"]!,
-  });
+  const session = await getAdminSession();
   await session.clear();
   return { ok: true as const };
 });

@@ -75,10 +75,26 @@ const css = `
   .adm-name { font-weight: 800; font-size: .95rem; }
   .adm-price { min-height: 40px; text-align: right; }
   .adm-toggle {
-    min-height: 40px; border-radius: 10px; border: 1px solid transparent; font-weight: 900; cursor: pointer;
-    color: #071b0d; background: #25d366;
+    display: inline-flex; align-items: center; justify-content: flex-start; gap: 10px;
+    min-height: 42px; width: 100%; padding: 0 12px;
+    border-radius: 999px; border: 1px solid rgba(37,211,102,.55); font-weight: 900; cursor: pointer;
+    color: #0a2a15; background: #25d366; transition: background .18s ease, color .18s ease, border-color .18s ease;
   }
-  .adm-toggle.off { color: #ffd7e0; background: #7a1330; }
+  .adm-toggle .knob {
+    position: relative; flex: 0 0 auto; width: 42px; height: 24px; border-radius: 999px;
+    background: rgba(0,0,0,.28); transition: background .18s ease;
+  }
+  .adm-toggle .knob::after {
+    content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px;
+    border-radius: 50%; background: #fff; transition: transform .18s ease;
+    transform: translateX(18px);
+  }
+  .adm-toggle .knob-label { font-size: .88rem; }
+  .adm-toggle.off {
+    color: #fff; background: #d32036; border-color: rgba(255,120,140,.7);
+  }
+  .adm-toggle.off .knob::after { transform: translateX(0); }
+  .adm-toggle:disabled { opacity: .65; cursor: progress; }
   .adm-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
   .adm-tab { flex: 1; min-height: 44px; border-radius: 12px; border: 1px solid rgba(207,40,189,.35); background: rgba(255,255,255,.05); color: #e6d6e7; font-weight: 900; cursor: pointer; }
   .adm-tab.active { color: #fff; background: linear-gradient(135deg, #5c075f, #aa159f); border-color: transparent; }
@@ -274,13 +290,17 @@ function AdminPage() {
                         type="button"
                         className={`adm-toggle ${draft.available ? "" : "off"}`}
                         disabled={savingId === item.id}
+                        aria-pressed={draft.available}
                         onClick={() => {
                           const next = { ...draft, available: !draft.available };
                           setDrafts((d) => ({ ...d, [item.id]: next }));
                           persist(item.id, next);
                         }}
                       >
-                        {draft.available ? "Disponível" : "Indisponível"}
+                        <span className="knob" aria-hidden="true" />
+                        <span className="knob-label">
+                          {draft.available ? "Disponível" : "Indisponível"}
+                        </span>
                       </button>
                     </div>
                   );
