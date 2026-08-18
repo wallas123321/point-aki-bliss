@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
 import whatsappLogo from "@/assets/whatsapp-logo.png.asset.json";
+import bandeiraPara from "@/assets/bandeira-para.png.asset.json";
 import { menuCatalog, type MenuItem, type MenuTab } from "@/data/menu";
 
 const whatsappNumber = "554498721016";
