@@ -460,18 +460,37 @@ function CardapioPage() {
 
   useEffect(() => {
     let active = true;
-    fetchOverrides()
-      .then((rows) => {
-        if (!active) return;
-        const map: Record<string, MenuOverride> = {};
-        rows.forEach((row) => {
-          map[row.item_id] = row;
-        });
-        setOverrides(map);
-      })
-      .catch(() => {});
+    const load = () =>
+      fetchOverrides()
+        .then((rows) => {
+          if (!active) return;
+          const map: Record<string, MenuOverride> = {};
+          rows.forEach((row) => {
+            map[row.item_id] = row;
+          });
+          setOverrides(map);
+        })
+        .catch(() => {});
+    load();
+
+    const channel = supabase
+      .channel("menu_overrides_public")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "menu_overrides" },
+        () => {
+          load();
+        },
+      )
+      .subscribe();
+
+    const onFocus = () => load();
+    window.addEventListener("focus", onFocus);
+
     return () => {
       active = false;
+      window.removeEventListener("focus", onFocus);
+      supabase.removeChannel(channel);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
