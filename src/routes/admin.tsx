@@ -66,13 +66,18 @@ const css = `
   .adm-section { margin-top: 24px; }
   .adm-section h2 { margin: 0 0 10px; font-size: 1.05rem; font-weight: 900; color: #f0a7e6; text-transform: uppercase; letter-spacing: .04em; }
   .adm-row {
-    display: grid; grid-template-columns: 1fr 120px 132px; gap: 10px; align-items: center;
+    display: grid; grid-template-columns: 1fr 132px 132px; gap: 10px; align-items: center;
     padding: 11px 12px; margin-bottom: 8px; border-radius: 12px;
     border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04);
   }
   .adm-row.off { opacity: .62; }
   .adm-name { font-weight: 800; font-size: .95rem; }
-  .adm-price { min-height: 40px; text-align: right; }
+  .adm-price-wrap { position: relative; }
+  .adm-price-prefix {
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    color: #bca8bd; font-weight: 800; font-size: .95rem; pointer-events: none;
+  }
+  .adm-price { min-height: 40px; padding-left: 34px; text-align: right; }
   .adm-toggle {
     display: inline-flex; align-items: center; justify-content: flex-start; gap: 10px;
     min-height: 42px; width: 100%; padding: 0 12px;
@@ -279,20 +284,23 @@ function AdminPage() {
                       key={item.id}
                     >
                       <span className="adm-name">{item.name}</span>
-                      <input
-                        className="adm-input adm-price"
-                        type="number"
-                        step="0.01"
-                        min="0"
-                        value={draft.price}
-                        onChange={(e) =>
-                          setDrafts((d) => ({
-                            ...d,
-                            [item.id]: { ...draft, price: e.target.value },
-                          }))
-                        }
-                        onBlur={() => persist(item.id, drafts[item.id] ?? draft)}
-                      />
+                      <label className="adm-price-wrap" aria-label="Preço">
+                        <span className="adm-price-prefix">R$</span>
+                        <input
+                          className="adm-input adm-price"
+                          type="number"
+                          step="0.01"
+                          min="0"
+                          value={draft.price}
+                          onChange={(e) =>
+                            setDrafts((d) => ({
+                              ...d,
+                              [item.id]: { ...draft, price: e.target.value },
+                            }))
+                          }
+                          onBlur={() => persist(item.id, drafts[item.id] ?? draft)}
+                        />
+                      </label>
                       <button
                         type="button"
                         className={`adm-toggle ${draft.available ? "" : "off"}`}
