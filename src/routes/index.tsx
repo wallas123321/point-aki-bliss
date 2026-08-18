@@ -5,8 +5,6 @@ import locationPinAsset from "@/assets/location-pin.png.asset.json";
 import levarCasaAsset from "@/assets/levar-casa.png.asset.json";
 import consumoLocalAsset from "@/assets/consumo-local.png.asset.json";
 
-const whatsappUrl =
-  "https://wa.me/554498721016?text=Ol%C3%A1%2C%20vim%20pelo%20Instagram%2C%20queria%20mais%20informa%C3%A7%C3%B5es.";
 const mapsUrl = "https://share.google/Ki5s6pwdYh4Apfe2r";
 const instagramUrl = "https://www.instagram.com/point.akidoacai/";
 const address =
@@ -107,10 +105,7 @@ const css = `
   }
   .link:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.7); background: #ffffff; }
   .link:active { transform: scale(.988); }
-  .link.primary { border-color: rgba(37,211,102,.55); background: linear-gradient(135deg, rgba(37,211,102,.12), rgba(255,255,255,.92)); }
-  .link.primary:hover { background: linear-gradient(135deg, rgba(37,211,102,.18), #ffffff); }
   .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 15px; background: rgba(255,255,255,.11); }
-  .primary .icon { background: #25d366; box-shadow: 0 8px 25px rgba(37,211,102,.24); }
   .instagram .icon { background: linear-gradient(145deg, #7b2fff, #e33186 54%, #ffae31); }
   .maps .icon { background: linear-gradient(145deg, var(--purple-600), var(--magenta)); }
   .menu .icon { background: linear-gradient(145deg, #ff6a00, #ee0979); }
@@ -158,20 +153,6 @@ function Index() {
           </header>
 
           <nav className="links">
-            <a className="link primary" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <span className="icon">
-                <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-                  <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35Z" />
-                  <path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2 22l5.36-1.4a9.8 9.8 0 0 0 4.68 1.19h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.77 9.77 0 0 0 12.04 2Zm0 17.94c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.18.83.85-3.1-.2-.32a8.1 8.1 0 0 1-1.24-4.32c0-4.51 3.67-8.18 8.18-8.18 2.19 0 4.24.85 5.79 2.4a8.13 8.13 0 0 1 2.39 5.79c0 4.51-3.67 8.23-8.09 8.23Z" />
-                </svg>
-              </span>
-              <span className="link-copy">
-                <span className="link-title">Falar no WhatsApp</span>
-                <span className="link-description">Pedidos, reservas e mais informações</span>
-              </span>
-              <Arrow />
-            </a>
-
             <a className="link menu" href="/cardapio?tab=local" aria-label="Cardápio para consumo no local">
               <span className="icon">
                 <img src={consumoLocalAsset.url} alt="" style={{ width: '44px', height: '44px', display: 'block', borderRadius: '15px', objectFit: 'cover' }} />
