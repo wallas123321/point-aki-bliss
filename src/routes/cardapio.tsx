@@ -408,13 +408,16 @@ const css = `
     .back-link { width: fit-content; min-height: 40px; }
     .menu-tabs { grid-template-columns: 1fr; position: sticky; top: 8px; z-index: 20; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
     .menu-tab { min-height: 44px; font-size: .82rem; }
-    .menu-section { padding: 0 12px 10px; }
-    .section-title { width: 96%; padding-inline: 12px; }
+    .menu-section { padding: 0 10px 12px; }
+    .section-title { width: 96%; padding-inline: 12px; margin-bottom: 14px; }
+    .items-list { gap: 8px; }
     .menu-item {
       grid-template-columns: 1fr auto;
       gap: 7px 10px;
-      min-height: 82px;
-      padding: 11px 0;
+      min-height: 86px;
+      padding: 13px 10px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
     }
     .item-copy { grid-column: 1 / 2; }
     .item-dots { display: none; }
