@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import logo from "@/assets/logo-point-aki.png";
 import locationPinAsset from "@/assets/location-pin.png.asset.json";
-import kitLevarCasaAsset from "@/assets/kit-levar-casa.png.asset.json";
+import levarCasaAsset from "@/assets/levar-casa.png.asset.json";
 import consumoLocalAsset from "@/assets/consumo-local.png.asset.json";
 
 const whatsappUrl =
@@ -185,7 +185,7 @@ function Index() {
 
             <a className="link menu" href="/cardapio?tab=casa" aria-label="Cardápio para levar para casa">
               <span className="icon">
-                <img src={kitLevarCasaAsset.url} alt="" style={{ width: '44px', height: '44px', display: 'block', borderRadius: '15px', objectFit: 'cover' }} />
+                <img src={levarCasaAsset.url} alt="" style={{ width: '44px', height: '44px', display: 'block', borderRadius: '15px', objectFit: 'cover' }} />
               </span>
               <span className="link-copy">
                 <span className="link-title">Cardápio - Levar para casa</span>
