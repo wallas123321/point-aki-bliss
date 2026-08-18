@@ -1,35 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createHash, createHmac, timingSafeEqual } from "node:crypto";
-
-function matches(input: string, expected: string) {
-  const a = createHash("sha256").update(input, "utf8").digest();
-  const b = createHash("sha256").update(expected, "utf8").digest();
-  return timingSafeEqual(a, b);
-}
-
-const TOKEN_TTL_MS = 1000 * 60 * 60 * 24 * 7;
-
-function signPayload(payload: string) {
-  const secret = process.env["SESSION_SECRET"] ?? "dev-session-secret-placeholder";
-  return createHmac("sha256", secret).update(payload).digest("hex");
-}
-
-function issueToken() {
-  const exp = String(Date.now() + TOKEN_TTL_MS);
-  return `${exp}.${signPayload(exp)}`;
-}
-
-function requireAdmin(token: string | undefined) {
-  const [exp, sig] = (token ?? "").split(".");
-  if (!exp || !sig) throw new Error("Não autorizado");
-  if (Number(exp) < Date.now()) throw new Error("Não autorizado");
-  const expected = signPayload(exp);
-  if (sig.length !== expected.length) throw new Error("Não autorizado");
-  if (!timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) {
-    throw new Error("Não autorizado");
-  }
-}
-
 export type MenuOverride = {
   item_id: string;
   price: number | null;
@@ -55,6 +24,7 @@ export const adminStatus = createServerFn({ method: "POST" })
   .inputValidator((data: { token?: string | undefined }) => data ?? {})
   .handler(async ({ data }) => {
     try {
+      const { requireAdmin } = await import("./menu-auth.server");
       requireAdmin(data.token);
       return { unlocked: true };
     } catch {
@@ -65,9 +35,10 @@ export const adminStatus = createServerFn({ method: "POST" })
 export const adminLogin = createServerFn({ method: "POST" })
   .inputValidator((data: { password: string }) => data)
   .handler(async ({ data }) => {
+    const { matchesPassword, issueToken } = await import("./menu-auth.server");
     const expected = process.env["MENU_ADMIN_PASSWORD"];
-    if (!expected) return { ok: false as const };
-    if (!matches(data.password ?? "", expected)) {
+    if (!expected) return { ok: false as const, token: null };
+    if (!matchesPassword(data.password ?? "", expected)) {
       return { ok: false as const, token: null };
     }
     return { ok: true as const, token: issueToken() };
@@ -89,6 +60,7 @@ export const saveMenuItem = createServerFn({ method: "POST" })
     },
   )
   .handler(async ({ data }) => {
+    const { requireAdmin } = await import("./menu-auth.server");
     requireAdmin(data.token);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin.from("menu_overrides").upsert(
