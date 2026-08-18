@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowLeft,
   MapPin,
@@ -10,6 +11,7 @@ import logo from "@/assets/logo-point-aki.png";
 import whatsappLogo from "@/assets/whatsapp-logo.png.asset.json";
 import bandeiraPara from "@/assets/bandeira-para.png.asset.json";
 import { menuCatalog, type MenuItem, type MenuTab } from "@/data/menu";
+import { getMenuOverrides, type MenuOverride } from "@/lib/menu.functions";
 
 const whatsappNumber = "554498721016";
 const address = "R. Ver. Joaquim Pereira de Castro, 311 - Vila Santo Antônio, Maringá";
@@ -453,7 +455,43 @@ function CardapioPage() {
   const search = useSearch({ from: "/cardapio" }) as { tab?: string };
   const initialTab: MenuTab = search.tab === "casa" ? "casa" : "local";
   const [activeTab, setActiveTab] = useState<MenuTab>(initialTab);
-  const sections = useMemo(() => menuCatalog[activeTab], [activeTab]);
+  const fetchOverrides = useServerFn(getMenuOverrides);
+  const [overrides, setOverrides] = useState<Record<string, MenuOverride>>({});
+
+  useEffect(() => {
+    let active = true;
+    fetchOverrides()
+      .then((rows) => {
+        if (!active) return;
+        const map: Record<string, MenuOverride> = {};
+        rows.forEach((row) => {
+          map[row.item_id] = row;
+        });
+        setOverrides(map);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const sections = useMemo(
+    () =>
+      menuCatalog[activeTab].map((section) => ({
+        ...section,
+        items: section.items.map((item) => {
+          const o = overrides[item.id];
+          if (!o) return item;
+          return {
+            ...item,
+            price: o.price ?? item.price,
+            available: o.available,
+          };
+        }),
+      })),
+    [activeTab, overrides],
+  );
   const subtitle = activeTab === "local" ? "Consumo no Local" : "Leve para Casa";
 
   return (
