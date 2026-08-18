@@ -455,7 +455,43 @@ function CardapioPage() {
   const search = useSearch({ from: "/cardapio" }) as { tab?: string };
   const initialTab: MenuTab = search.tab === "casa" ? "casa" : "local";
   const [activeTab, setActiveTab] = useState<MenuTab>(initialTab);
-  const sections = useMemo(() => menuCatalog[activeTab], [activeTab]);
+  const fetchOverrides = useServerFn(getMenuOverrides);
+  const [overrides, setOverrides] = useState<Record<string, MenuOverride>>({});
+
+  useEffect(() => {
+    let active = true;
+    fetchOverrides()
+      .then((rows) => {
+        if (!active) return;
+        const map: Record<string, MenuOverride> = {};
+        rows.forEach((row) => {
+          map[row.item_id] = row;
+        });
+        setOverrides(map);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const sections = useMemo(
+    () =>
+      menuCatalog[activeTab].map((section) => ({
+        ...section,
+        items: section.items.map((item) => {
+          const o = overrides[item.id];
+          if (!o) return item;
+          return {
+            ...item,
+            price: o.price ?? item.price,
+            available: o.available,
+          };
+        }),
+      })),
+    [activeTab, overrides],
+  );
   const subtitle = activeTab === "local" ? "Consumo no Local" : "Leve para Casa";
 
   return (
