@@ -14,7 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      menu_overrides: {
+        Row: {
+          available: boolean
+          item_id: string
+          price: number | null
+          updated_at: string
+        }
+        Insert: {
+          available?: boolean
+          item_id: string
+          price?: number | null
+          updated_at?: string
+        }
+        Update: {
+          available?: boolean
+          item_id?: string
+          price?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
