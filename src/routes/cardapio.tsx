@@ -391,8 +391,8 @@ const css = `
     .menu-subtitle { font-size: clamp(.92rem, 4.4vw, 1.25rem); }
     .menu-toolbar { grid-template-columns: 1fr; }
     .back-link { width: fit-content; min-height: 40px; }
-    .menu-tabs { position: sticky; top: 8px; z-index: 20; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-    .menu-tab { min-height: 44px; font-size: .86rem; }
+    .menu-tabs { grid-template-columns: 1fr; position: sticky; top: 8px; z-index: 20; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .menu-tab { min-height: 44px; font-size: .82rem; }
     .menu-section { padding: 0 12px 10px; }
     .section-title { width: 96%; padding-inline: 12px; }
     .menu-item {
