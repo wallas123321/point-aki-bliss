@@ -115,6 +115,8 @@ const css = `
   }
 
   .menu-logo {
+    position: relative;
+    z-index: 3;
     width: 176px;
     height: 176px;
     border-radius: 50%;
@@ -123,6 +125,8 @@ const css = `
   }
 
   .menu-brand {
+    position: relative;
+    z-index: 3;
     text-align: center;
   }
 
