@@ -387,6 +387,7 @@ const css = `
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: .02em;
+    white-space: nowrap;
   }
 
   .footer-whatsapp img {
