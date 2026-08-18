@@ -646,8 +646,8 @@ function CardapioPage() {
             <img
               src={whatsappLogo.url}
               alt=""
-              width={26}
-              height={26}
+              width={40}
+              height={40}
               style={{ display: "block" }}
             />
             Informações, reservas, dúvidas
