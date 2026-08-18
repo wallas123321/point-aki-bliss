@@ -374,11 +374,19 @@ const css = `
   .footer-whatsapp {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
-    color: #68c914;
-    font-size: clamp(1rem, 2.6vw, 1.45rem);
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 0 26px;
+    border-radius: 14px;
+    color: #071b0d;
+    background: #25d366;
+    box-shadow: 0 10px 26px rgba(37,211,102,.22);
+    font-size: clamp(.95rem, 2.4vw, 1.25rem);
     font-weight: 950;
     text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: .02em;
   }
 
   .footer-address {
