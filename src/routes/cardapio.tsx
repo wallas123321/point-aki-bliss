@@ -375,18 +375,24 @@ const css = `
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    min-height: 52px;
-    padding: 0 26px;
+    gap: 12px;
+    min-height: 58px;
+    padding: 0 24px;
     border-radius: 14px;
     color: #071b0d;
     background: #25d366;
     box-shadow: 0 10px 26px rgba(37,211,102,.22);
-    font-size: clamp(.95rem, 2.4vw, 1.25rem);
+    font-size: clamp(.74rem, 1.85vw, .98rem);
     font-weight: 950;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: .02em;
+  }
+
+  .footer-whatsapp img {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
   }
 
   .footer-address {
@@ -436,6 +442,8 @@ const css = `
     .order-button { grid-column: 1 / -1; width: 100%; min-height: 40px; }
     .order-button img { width: 48px; height: 48px; }
     .unavailable-badge { right: 5px; top: 49px; translate: 0 0; font-size: .62rem; }
+    .footer-whatsapp { gap: 10px; min-height: 62px; padding: 0 18px; font-size: .78rem; }
+    .footer-whatsapp img { width: 50px; height: 50px; }
     .footer-address { align-items: flex-start; text-align: left; }
   }
 
@@ -638,8 +646,8 @@ function CardapioPage() {
             <img
               src={whatsappLogo.url}
               alt=""
-              width={26}
-              height={26}
+              width={40}
+              height={40}
               style={{ display: "block" }}
             />
             Informações, reservas, dúvidas
