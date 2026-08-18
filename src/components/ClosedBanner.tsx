@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
+function isMondayInSaoPaulo(date = new Date()) {
+  const weekday = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Sao_Paulo",
+    weekday: "short",
+  }).format(date);
+  return weekday === "Mon";
+}
 
 export function ClosedBanner() {
-  const [isClosed, setIsClosed] = useState(false);
-
-  useEffect(() => {
-    const today = new Date().getDay();
-    setIsClosed(today === 1); // Monday = 1
-  }, []);
-
-  if (!isClosed) return null;
+  // Computed synchronously (same result on server and client) so the banner
+  // renders immediately, with no delay on navigation.
+  if (!isMondayInSaoPaulo()) return null;
 
   return (
     <div
       style={{
-        position: "relative",
+        position: "sticky",
+        top: 0,
         zIndex: 9999,
         width: "100%",
         padding: "14px 18px",
