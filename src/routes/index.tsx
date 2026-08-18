@@ -82,7 +82,7 @@ const css = `
   }
   .logo { width: 100%; height: 100%; display: block; border-radius: 50%; object-fit: cover; }
   .pa-root h1 { margin: 22px 0 6px; font-size: clamp(2rem, 8vw, 2.75rem); line-height: .98; letter-spacing: -.045em; }
-  .headline { margin: 10px auto 0; max-width: 410px; color: var(--soft-white); font-size: 1.08rem; line-height: 1.42; }
+  .headline { margin: 10px auto 28px; max-width: 410px; color: var(--soft-white); font-size: 1.08rem; line-height: 1.42; }
   .headline strong { color: var(--pink); font-weight: 800; }
   .address {
     display: flex; gap: 12px; align-items: flex-start; margin: 24px 0 20px; padding: 16px;
