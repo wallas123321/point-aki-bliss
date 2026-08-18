@@ -119,6 +119,18 @@ const css = `
   .link-description { display: block; margin-top: 3px; color: #6b4a6e; font-size: .86rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .arrow { width: 21px; height: 21px; opacity: .72; }
   .footer { padding-top: 22px; color: rgba(255,255,255,.62); text-align: center; font-size: .78rem; }
+  .admin-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 7px 14px;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 999px;
+    color: rgba(255,255,255,.72);
+    text-decoration: none;
+    font-size: .74rem;
+    font-weight: 700;
+  }
+  .admin-link:hover { color: #fff; border-color: rgba(255,255,255,.5); }
   @media (max-width: 390px) {
     .card { padding-inline: 12px; }
     .logo-wrap { width: 154px; height: 154px; }
@@ -219,6 +231,9 @@ function Index() {
               </svg>
               <span>{address}</span>
             </div>
+            <Link className="admin-link" to="/admin">
+              Configurar cardápio
+            </Link>
           </footer>
         </div>
       </div>
