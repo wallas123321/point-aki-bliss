@@ -4,6 +4,7 @@ import logo from "@/assets/logo-point-aki.png";
 import googleMapsPinAsset from "@/assets/google-maps-pin.png.asset.json";
 import levarCasaAsset from "@/assets/levar-casa.png.asset.json";
 import consumoLocalAsset from "@/assets/consumo-local.png.asset.json";
+import bandeiraParaAsset from "@/assets/bandeira-para.png.asset.json";
 
 const mapsUrl = "https://share.google/Ki5s6pwdYh4Apfe2r";
 const instagramUrl = "https://www.instagram.com/point.akidoacai/";
@@ -83,6 +84,8 @@ const css = `
   .logo { width: 100%; height: 100%; display: block; border-radius: 50%; object-fit: cover; }
   .pa-root h1 { margin: 22px 0 6px; font-size: clamp(2rem, 8vw, 2.75rem); line-height: .98; letter-spacing: -.045em; }
   .headline { margin: 10px auto 28px; max-width: 410px; color: var(--soft-white); font-size: 1.08rem; line-height: 1.42; }
+  .para-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; padding: 5px 12px 5px 6px; border-radius: 999px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); color: var(--soft-white); font-size: .78rem; font-weight: 700; letter-spacing: .02em; }
+  .para-badge img { display: block; border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.35); }
   .headline strong { color: var(--pink); font-weight: 800; }
   .address {
     display: flex; gap: 12px; align-items: flex-start; margin: 24px 0 20px; padding: 16px;
@@ -146,6 +149,10 @@ function Index() {
               <img className="logo" src={logo} alt="Logo Point Aki do Açaí" width={816} height={816} />
             </div>
             <h1>Point Aki do Açaí</h1>
+            <div className="para-badge">
+              <img src={bandeiraParaAsset.url} alt="Bandeira do Pará" width={28} height={19} />
+              <span>Tradição paraense</span>
+            </div>
             <p className="headline">
               <strong>Açaí paraense de verdade</strong>
               <br />O sabor do Pará agora em Maringá.
