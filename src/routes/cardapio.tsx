@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import logo from "@/assets/logo-point-aki.png";
 import whatsappLogo from "@/assets/whatsapp-logo.png.asset.json";
+import bandeiraPara from "@/assets/bandeira-para.png.asset.json";
 import { menuCatalog, type MenuItem, type MenuTab } from "@/data/menu";
 
 const whatsappNumber = "554498721016";
@@ -81,6 +82,7 @@ const css = `
     border: 1px solid rgba(207,40,189,.28);
     background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.008));
     box-shadow: 0 22px 60px rgba(0,0,0,.32);
+    overflow: hidden;
   }
 
   .menu-header::after {
@@ -89,9 +91,32 @@ const css = `
     inset: auto 0 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--menu-magenta), transparent);
+    z-index: 2;
+  }
+
+  .menu-header-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: .68;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .menu-header-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8,5,9,.42), rgba(8,5,9,.68));
+    z-index: 1;
+    pointer-events: none;
   }
 
   .menu-logo {
+    position: relative;
+    z-index: 3;
     width: 176px;
     height: 176px;
     border-radius: 50%;
@@ -100,6 +125,8 @@ const css = `
   }
 
   .menu-brand {
+    position: relative;
+    z-index: 3;
     text-align: center;
   }
 
@@ -418,6 +445,13 @@ function CardapioPage() {
         <div className="ornament-line" aria-hidden="true" />
 
         <header className="menu-header">
+          <img
+            className="menu-header-bg"
+            src={bandeiraPara.url}
+            alt=""
+            aria-hidden="true"
+          />
+          <div className="menu-header-overlay" aria-hidden="true" />
           <img className="menu-logo" src={logo} alt="Point Aki do Açaí" />
           <div className="menu-brand">
             <h1 className="menu-brand-name">
