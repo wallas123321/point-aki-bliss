@@ -206,7 +206,7 @@ const css = `
     border-radius: 11px;
     color: #d9c8da;
     background: transparent;
-    font: inherit;
+    font-family: "Montserrat", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-weight: 900;
     cursor: pointer;
     transition: .18s ease;
