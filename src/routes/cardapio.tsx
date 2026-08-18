@@ -101,7 +101,7 @@ const css = `
     height: 100%;
     object-fit: cover;
     object-position: center;
-    opacity: .55;
+    opacity: .68;
     z-index: 0;
     pointer-events: none;
   }
@@ -109,7 +109,7 @@ const css = `
   .menu-header-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(8,5,9,.55), rgba(8,5,9,.78));
+    background: linear-gradient(180deg, rgba(8,5,9,.42), rgba(8,5,9,.68));
     z-index: 1;
     pointer-events: none;
   }
